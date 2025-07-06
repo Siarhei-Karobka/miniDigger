@@ -48,7 +48,6 @@ button {
     font-size: 1em;
     border: 1px solid #ccc;
     border-radius: 5px;
-    width: 100%;
 }
 button {
     background: #2e2e2e;
@@ -63,4 +62,10 @@ footer {
     padding: 20px;
     font-size: 0.9em;
     color: #888;
+}
+
+#status {
+    margin-top: 15px;
+    font-weight: bold;
+    color: green;
 }
