@@ -2,53 +2,56 @@
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
-    <title>Форма в Telegram</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Аренда ЖК экскаватора</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
+
   <body>
-    <form id="tg">
-      <input type="text" name="name" placeholder="Имя" required />
-      <textarea name="message" placeholder="Сообщение" required></textarea>
-      <button type="submit">Отправить</button>
-    </form>
+    <header>
+      <h1>Аренда ЖК Экскаватора</h1>
+      <p>Работаем по городу и области. Надёжно. Оперативно. Недорого.</p>
+    </header>
 
-    <script>
-      const TOKEN = "8063489404:AAFVYA63icluhbYxwh57ZRKklMXGhkjaAJo";
-      const CHAT_ID = "858464369";
-      const API = `https://api.telegram.org/bot${TOKEN}/sendMessage`;
+    <section>
+      <h2>Почему выбирают нас?</h2>
+      <div class="features">
+        <div class="feature">
+          <strong>Опыт более 10 лет</strong>
+          <p>Профессиональные операторы и исправная техника.</p>
+        </div>
+        <div class="feature">
+          <strong>Гибкие цены</strong>
+          <p>Почасовая или посменная аренда под ваш бюджет.</p>
+        </div>
+        <div class="feature">
+          <strong>Быстрый выезд</strong>
+          <p>Возможна подача техники в течение 1-2 часов.</p>
+        </div>
+      </div>
+    </section>
 
-      document.getElementById("tg").addEventListener("submit", function (e) {
-        e.preventDefault();
+    <section>
+      <h2>Оставить заявку</h2>
 
-        const form = e.target;
-        const name = form.name.value.trim();
-        const msg = form.message.value.trim();
+      <form id="tg">
+        <input type="text" name="name" placeholder="Ваше имя" required />
+        <input type="tel" name="phone" placeholder="Телефон" required />
+        <textarea
+          name="message"
+          placeholder="Комментарий (адрес, время и т.д.)"
+          required
+        ></textarea>
+        <button type="submit">Отправить заявку</button>
+      </form>
+    </section>
 
-        if (!name || !msg) {
-          alert("Пожалуйста, заполните все поля");
-          return;
-        }
+    <footer>
+      © 2025 ЖК Экскаватор | г. ВашГород | Тел: +7 (000) 000-00-00
+    </footer>
 
-        const text = `📝 Новое сообщение:\n👤 ${name}\n💬 ${msg}`;
+    <p id="status"></p>
 
-        fetch(API, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            chat_id: CHAT_ID,
-            text: text,
-          }),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            if (data.ok) {
-              alert("Сообщение отправлено!");
-              form.reset();
-            } else {
-              alert("Ошибка отправки: " + data.description);
-            }
-          })
-          .catch((err) => alert("Ошибка соединения: " + err));
-      });
-    </script>
+    <script src="telegram.js"></script>
   </body>
 </html>
