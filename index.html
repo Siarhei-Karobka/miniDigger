@@ -2,78 +2,53 @@
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
-    <title>Форма обратной связи</title>
-    <style>
-      body {
-        font-family: sans-serif;
-        max-width: 400px;
-        margin: auto;
-        padding: 20px;
-      }
-      input,
-      textarea {
-        width: 100%;
-        margin: 10px 0;
-        padding: 10px;
-      }
-      button {
-        padding: 10px 20px;
-      }
-    </style>
+    <title>Форма в Telegram</title>
   </head>
   <body>
-    <h2>Свяжитесь с нами</h2>
-    <form id="telegramForm">
-      <input type="text" name="name" placeholder="Ваше имя" required />
-      <input type="email" name="email" placeholder="Ваш email" required />
-      <textarea name="message" placeholder="Ваше сообщение" required></textarea>
+    <form id="tg">
+      <input type="text" name="name" placeholder="Имя" required />
+      <textarea name="message" placeholder="Сообщение" required></textarea>
       <button type="submit">Отправить</button>
     </form>
-
-    <p id="status"></p>
 
     <script>
       const TOKEN = "8063489404:AAFVYA63icluhbYxwh57ZRKklMXGhkjaAJo";
       const CHAT_ID = "@miniDiggerBot";
       const API = `https://api.telegram.org/bot${TOKEN}/sendMessage`;
 
-      document
-        .getElementById("telegramForm")
-        .addEventListener("submit", function (e) {
-          e.preventDefault();
+      document.getElementById("tg").addEventListener("submit", function (e) {
+        e.preventDefault();
 
-          const form = e.target;
-          const name = form.name.value;
-          const email = form.email.value;
-          const message = form.message.value;
+        const form = e.target;
+        const name = form.name.value.trim();
+        const msg = form.message.value.trim();
 
-          const text = `
-🔔 Новое сообщение с сайта:
-👤 Имя: ${name}
-📧 Email: ${email}
-💬 Сообщение: ${message}
-      `;
+        if (!name || !msg) {
+          alert("Пожалуйста, заполните все поля");
+          return;
+        }
 
-          fetch(API, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              chat_id: CHAT_ID,
-              text: text,
-            }),
+        const text = `📝 Новое сообщение:\n👤 ${name}\n💬 ${msg}`;
+
+        fetch(API, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            chat_id: CHAT_ID,
+            text: text,
+          }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.ok) {
+              alert("Сообщение отправлено!");
+              form.reset();
+            } else {
+              alert("Ошибка отправки: " + data.description);
+            }
           })
-            .then((res) =>
-              res.ok ? "Сообщение отправлено!" : "Ошибка отправки."
-            )
-            .then((msg) => (document.getElementById("status").innerText = msg))
-            .catch((err) => {
-              console.error(err);
-              document.getElementById("status").innerText =
-                "Ошибка соединения.";
-            });
-
-          form.reset();
-        });
+          .catch((err) => alert("Ошибка соединения: " + err));
+      });
     </script>
   </body>
 </html>
