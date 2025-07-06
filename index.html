@@ -3,14 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Аренда ЖК экскаватора</title>
+    <title>Аренда мини-экскаватора</title>
     <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
     <header>
-      <h1>Аренда ЖК Экскаватора</h1>
+      <img src="img/miniDigger.png" alt="miniDigger" class="site-image" />
+
+      <h1>Аренда мини-экскаватора</h1>
       <p>Работаем по городу и области. Надёжно. Оперативно. Недорого.</p>
+
+      <a href="tel:+375440000000" class="call-button">📞 Позвонить</a>
     </header>
 
     <section>
@@ -35,22 +39,19 @@
       <h2>Оставить заявку</h2>
 
       <form id="tg">
-        <input type="text" name="name" placeholder="Ваше имя" required />
-        <input type="tel" name="phone" placeholder="Телефон" required />
+        <input type="text" name="name" placeholder="Ваше имя" />
+        <input type="tel" name="phone" placeholder="Телефон" />
         <textarea
           name="message"
           placeholder="Комментарий (адрес, время и т.д.)"
-          required
         ></textarea>
         <button type="submit">Отправить заявку</button>
       </form>
     </section>
 
     <footer>
-      © 2025 ЖК Экскаватор | г. ВашГород | Тел: +7 (000) 000-00-00
+      © 2025 Мини-Экскаватор | г. Минск | Тел: +375 (44) 000-00-00
     </footer>
-
-    <p id="status" style="display: none"></p>
 
     <script src="telegram.js"></script>
   </body>

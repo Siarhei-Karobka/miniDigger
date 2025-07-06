@@ -1,5 +1,5 @@
 const TOKEN = "8063489404:AAFVYA63icluhbYxwh57ZRKklMXGhkjaAJo";
-const CHAT_ID = "858464369";
+const CHAT_ID = "-4988140259";
 const API = `https://api.telegram.org/bot${TOKEN}/sendMessage`;
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -10,16 +10,15 @@ document.addEventListener("DOMContentLoaded", function () {
     e.preventDefault();
 
     const name = form.name.value.trim();
+    const phone = form.phone.value.trim();
     const msg = form.message.value.trim();
 
-    if (!name || !msg) {
-      statusEl.textContent = "Заполните все поля";
-      statusEl.style.color = "red";
-      statusEl.style.display = "block";
+    if (!name || !phone || !msg) {
+      alert("❗ Пожалуйста, заполните все поля.");
       return;
     }
 
-    const text = `📝 Новое сообщение:\n👤 ${name}\n💬 ${msg}`;
+    const text = `📝 Новое сообщение:\n👤 ${name}\n📱 ${phone}\n💬 ${msg}`;
 
     fetch(API, {
       method: "POST",
@@ -32,20 +31,14 @@ document.addEventListener("DOMContentLoaded", function () {
       .then((res) => res.json())
       .then((data) => {
         if (data.ok) {
-          statusEl.textContent = "✅ Сообщение отправлено!";
-          statusEl.style.color = "green";
-          statusEl.style.display = "block";
+          alert("✅ Сообщение отправлено!");
           form.reset();
         } else {
-          statusEl.textContent = "❌ Ошибка: " + data.description;
-          statusEl.style.color = "red";
-          statusEl.style.display = "block";
+          alert("❌ Ошибка: " + data.description);
         }
       })
       .catch((err) => {
-        statusEl.textContent = "⚠️ Ошибка соединения";
-        statusEl.style.color = "red";
-        statusEl.style.display = "block";
+        alert("⚠️ Ошибка соединения");
       });
   });
 });

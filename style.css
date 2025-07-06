@@ -69,3 +69,30 @@ footer {
     font-weight: bold;
     color: green;
 }
+
+.site-image {
+    height: 100%;
+    max-height: 200px;
+    /* max-width: 600px; */
+    margin: 10px auto;
+    display: block;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.call-button {
+    display: inline-block;
+    padding: 12px 20px;
+    margin-top: 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #28a745;
+    border-radius: 8px;
+    text-decoration: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease;
+}
+
+.call-button:hover {
+    background-color: #218838;
+}
