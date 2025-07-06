@@ -2,120 +2,35 @@
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Аренда ЖК экскаватора</title>
+    <title>Форма обратной связи</title>
     <style>
       body {
-        margin: 0;
         font-family: sans-serif;
-        background: #f6f6f6;
-        color: #333;
-      }
-      header {
-        background: #2e2e2e;
-        color: white;
-        padding: 40px 20px;
-        text-align: center;
-      }
-      h1 {
-        margin: 0;
-        font-size: 2em;
-      }
-      section {
-        padding: 40px 20px;
-        max-width: 800px;
+        max-width: 400px;
         margin: auto;
-      }
-      .features {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-        justify-content: center;
-      }
-      .feature {
-        background: white;
         padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-        flex: 1 1 250px;
-      }
-      form {
-        background: white;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
       }
       input,
-      textarea,
-      button {
-        padding: 10px;
-        font-size: 1em;
-        border: 1px solid #ccc;
-        border-radius: 5px;
+      textarea {
         width: 100%;
+        margin: 10px 0;
+        padding: 10px;
       }
       button {
-        background: #2e2e2e;
-        color: white;
-        cursor: pointer;
-      }
-      button:hover {
-        background: #444;
-      }
-      footer {
-        text-align: center;
-        padding: 20px;
-        font-size: 0.9em;
-        color: #888;
+        padding: 10px 20px;
       }
     </style>
   </head>
   <body>
-    <header>
-      <h1>Аренда ЖК Экскаватора</h1>
-      <p>Работаем по городу и области. Надёжно. Оперативно. Недорого.</p>
-    </header>
-
-    <section>
-      <h2>Почему выбирают нас?</h2>
-      <div class="features">
-        <div class="feature">
-          <strong>Опыт более 10 лет</strong>
-          <p>Профессиональные операторы и исправная техника.</p>
-        </div>
-        <div class="feature">
-          <strong>Гибкие цены</strong>
-          <p>Почасовая или посменная аренда под ваш бюджет.</p>
-        </div>
-        <div class="feature">
-          <strong>Быстрый выезд</strong>
-          <p>Возможна подача техники в течение 1-2 часов.</p>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <h2>Оставить заявку</h2>
-      <form id="telegramForm">
-        <input type="text" name="name" placeholder="Ваше имя" required />
-        <input type="tel" name="phone" placeholder="Телефон" required />
-        <textarea
-          name="message"
-          placeholder="Комментарий (адрес, время и т.д.)"
-          required
-        ></textarea>
-        <button type="submit">Отправить заявку</button>
-      </form>
-    </section>
+    <h2>Свяжитесь с нами</h2>
+    <form id="telegramForm">
+      <input type="text" name="name" placeholder="Ваше имя" required />
+      <input type="email" name="email" placeholder="Ваш email" required />
+      <textarea name="message" placeholder="Ваше сообщение" required></textarea>
+      <button type="submit">Отправить</button>
+    </form>
 
     <p id="status"></p>
-
-    <footer>
-      © 2025 ЖК Экскаватор | г. ВашГород | Тел: +7 (000) 000-00-00
-    </footer>
 
     <script>
       const TOKEN = "8063489404:AAFVYA63icluhbYxwh57ZRKklMXGhkjaAJo";
