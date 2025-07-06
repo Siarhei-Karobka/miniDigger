@@ -99,7 +99,7 @@
 
     <section>
       <h2>Оставить заявку</h2>
-      <form action="send.php" method="POST">
+      <form id="telegramForm">
         <input type="text" name="name" placeholder="Ваше имя" required />
         <input type="tel" name="phone" placeholder="Телефон" required />
         <textarea
@@ -111,8 +111,54 @@
       </form>
     </section>
 
+    <p id="status"></p>
+
     <footer>
       © 2025 ЖК Экскаватор | г. ВашГород | Тел: +7 (000) 000-00-00
     </footer>
+
+    <script>
+      const TOKEN = "8063489404:AAFVYA63icluhbYxwh57ZRKklMXGhkjaAJo";
+      const CHAT_ID = "@miniDiggerBot";
+      const API = `https://api.telegram.org/bot${TOKEN}/sendMessage`;
+
+      document
+        .getElementById("telegramForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const form = e.target;
+          const name = form.name.value;
+          const email = form.email.value;
+          const message = form.message.value;
+
+          const text = `
+🔔 Новое сообщение с сайта:
+👤 Имя: ${name}
+📧 Email: ${email}
+💬 Сообщение: ${message}
+      `;
+
+          fetch(API, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              chat_id: CHAT_ID,
+              text: text,
+            }),
+          })
+            .then((res) =>
+              res.ok ? "Сообщение отправлено!" : "Ошибка отправки."
+            )
+            .then((msg) => (document.getElementById("status").innerText = msg))
+            .catch((err) => {
+              console.error(err);
+              document.getElementById("status").innerText =
+                "Ошибка соединения.";
+            });
+
+          form.reset();
+        });
+    </script>
   </body>
 </html>
